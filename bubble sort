@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+void bubbleSort(vector<int>& arr)
+{
+    int n = arr.size();
+    for(int i = 0; i<n-1 ;i++)
+    {
+        for(int pos = 0 ; pos<n-i-1 ; pos++ )
+        {
+            if(arr[pos] > arr[pos+1])
+            {
+                swap(arr[pos], arr[pos+1]);
+                
+            }//end of if block
+        }// end of inner for loop
+    }//end of for loop
+}// end of bubble Sort
+int main()
+{
+    vector<int> data = {64,34,25,12,11,90};
+    bubbleSort(data); 
+    cout<<"Sorted: ";
+    for(int x : data)
+    {
+        cout<< x << "  ";
+    }
+}//end of main()
