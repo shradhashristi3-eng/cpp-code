@@ -1,0 +1,29 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+void selectionSort(vector<int>& arr)
+{
+    int n = arr.size();
+    for(int pos = 0; pos<n-1; pos++)
+    {//assume current pos is min 
+      int minIdx = pos;
+      for(int j = pos+1; j<n ; j++)
+      {
+          if(arr[j]<arr[minIdx])
+          {
+              minIdx = j;
+          }
+      }//end of inner for loop
+      swap(arr[pos],arr[minIdx]);
+    }//end of loop
+}//end of selectionSort 
+int main()
+{
+    vector<int> data = {29,10,14,37,13};
+    selectionSort(data);
+    cout<<"After selection sort: ";
+    for(int x : data)
+    {
+        cout<< x << "   ";
+    }
+}//end of function main
