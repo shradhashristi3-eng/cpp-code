@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+// ── Tower of Hanoi ───────────────────────────────
+// Move n disks from 'src' to 'dest' using 'aux'
+void hanoi(int n, char src, char dest, char aux) {
+    if (n == 1) {                         // Base case: 1 disk
+        cout << "Move disk 1 from " << src << " → " << dest << "\n";
+        return;
+    }
+    hanoi(n-1, src, aux, dest);           // Step 1: move n-1 to aux
+    cout << "Move disk " << n << " from " << src << " → " << dest << "\n";
+    hanoi(n-1, aux, dest, src);           // Step 3: move n-1 to dest
+}
+
+// ── Count total moves ─────────────────────────────
+long long hanoiMoves(int n) {
+    if (n == 0) return 0;
+    return 2 * hanoiMoves(n-1) + 1;     // Recurrence: T(n) = 2T(n-1)+1
+}
+
+int main() {
+    cout << "=== Hanoi(3) ===\n";
+    hanoi(3, 'A', 'C', 'B');
+    cout << "\nTotal moves for n=10: " << hanoiMoves(10) << "\n"; // 1023
+    return 0;
+}
+
+=== Hanoi(3) ===
+Move disk 1 from A → C
+Move disk 2 from A → B
+Move disk 1 from C → B
+Move disk 3 from A → C
+Move disk 1 from B → A
+Move disk 2 from B → C
+Move disk 1 from A → C
+
+Total moves for n=10: 1023
