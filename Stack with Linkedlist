@@ -1,0 +1,70 @@
+//stack with the help of linkedlist
+#include <iostream>
+using namespace std;
+struct Node // if use struct  so the code is public
+{
+    int data;
+    Node* next;
+    Node(int val) : data(val), next(nullptr){}
+};
+class Stack
+{ 
+    Node* head;
+    int sz;
+    public:
+    Stack() : head(nullptr), sz(0){}
+    void push(int x)
+    {
+    Node* ptr = new Node(x);
+    ptr->next = head;
+    head = ptr;
+    sz++;
+    } //end of push()
+    void pop()
+    {
+        if(head == nullptr)   return;
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        sz--;
+    }//end of pop()
+    int top()
+    {
+        return head == nullptr ? -1: head->data;
+    }//end of top()
+    bool isEmpty()
+    {
+        return head == nullptr;
+    }//end if isEmpty()
+    
+    int size()
+    {
+        return sz;
+    }//end of size()
+    
+    ~Stack()
+    {
+        while( head != nullptr)
+        {
+            pop();
+        }
+    }//end of destructor
+};//end of class Stak
+int main()
+{
+    Stack s;
+    for(int i =1; i<=5;i++)
+    {
+        s.push( i*10);
+    }//end of for loop
+    cout<<"Stack (top->bottom): ";
+    while(s.isEmpty() == false)
+    {
+        cout<< s.top() <<"   ";
+        s.pop();
+        
+    }//end of while loop
+}//end of main()
+
+output
+Stack (top->bottom): 50   40   30   20   10  
